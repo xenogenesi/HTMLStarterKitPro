@@ -31,7 +31,7 @@ module.exports = function( grunt ) {
                 }
             },
             app: {
-                src: 'app/main.js',
+                // src: 'app/main.js',
                 options: {
                     specs: 'test/specs/app.spec.js',
                     keepRunner: true,
@@ -42,7 +42,15 @@ module.exports = function( grunt ) {
                     template: require('grunt-template-jasmine-requirejs'),
                     templateOptions: {
                         requireConfig: {
-                            baseUrl: 'app/'
+                            baseUrl: 'app/',
+                            paths: {
+                                'jquery': '../lib/jquery/jquery-1.9.1',
+                                'knockout': '../lib/knockout/knockout-2.3.0.debug',
+                                'text': '../lib/require/text',
+                                'durandal': '../lib/durandal/js',
+                                'plugins': '../lib/durandal/js/plugins',
+                                'transitions': '../lib/durandal/js/transitions'
+                            }
                         }
                     }
                 }

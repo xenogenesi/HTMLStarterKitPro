@@ -29,7 +29,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator'],  function (s
         widget: true
     });
 
-    app.start().then(function() {
+    return app.start().then(function() {
         //Replace 'viewmodels' in the moduleId with 'views' to locate the view.
         //Look for partial views in a 'views' folder in the root.
         viewLocator.useConvention();
