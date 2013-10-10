@@ -13,5 +13,9 @@
     "Jasmine"
   ],
   "author": "Rainer Wittmann",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jasmine": "~0.5.2"
+  }
 }
