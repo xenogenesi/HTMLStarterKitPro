@@ -1,4 +1,5 @@
 #HTML Starter Kit Pro
+[![Build Status](https://travis-ci.org/RainerAtSpirit/HTMLStarterKitPro.png?branch=master)](https://travis-ci.org/RainerAtSpirit/HTMLStarterKitPro)
 ### rough cut use on your own risk
 
 Using grunt and grunt-jasmine for Durandal application testing.
