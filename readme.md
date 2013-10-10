@@ -9,6 +9,8 @@ Using grunt and grunt-jasmine for Durandal application testing.
 4. run `npm install` in its root directory to install grunt dependencies
 5. run `grunt`, which will run `grunt jasmine:viewmodels` as default
 
+After you run the test for the first time you'll find a `_SpecRunner.html` file in root directory, which can be opened
+in the browser.
 
 There are two test sets configured:
 
