@@ -1,0 +1,17 @@
+{
+  "name": "HTMLStarterKitPro",
+  "version": "2.0.0",
+  "description": "adding Jasmine test environment to Durandal HTML Starter Kit",
+  "main": "app/main.js",
+  "scripts": {
+    "test": "grunt jasmine"
+  },
+  "keywords": [
+    "Durandal",
+    "HTML Starter Kit",
+    "Testing",
+    "Jasmine"
+  ],
+  "author": "Rainer Wittmann",
+  "license": "MIT"
+}
