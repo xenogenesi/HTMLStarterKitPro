@@ -1,8 +1,7 @@
 /*global jasmine, describe, beforeEach, it, expect, require, waitsFor, runs, define, $, spyOn */
 
-// Adding required 'applicationHost' container via jQuery
-$('#applicationHost').remove();
-$('body').append('<div id="applicationHost"></div>');
+// Adding required 'applicationHost' container to body
+document.body.innerHTML += '<div id="applicationHost"></div>';
 
 // By defining main as dependency we can test modules that are main dependencies
 // Important: router, dialog, widget CAN'T be tested, because they are loaded be 'configurePlugins
