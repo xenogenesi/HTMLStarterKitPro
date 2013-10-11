@@ -1,6 +1,19 @@
 /*global module, require */
 module.exports = function( grunt ) {
     "use strict";
+
+    var requireConfig = {
+        baseUrl: 'app/',
+        paths: {
+            'jquery': '../lib/jquery/jquery-1.9.1',
+            'knockout': '../lib/knockout/knockout-2.3.0.debug',
+            'text': '../lib/require/text',
+            'durandal': '../lib/durandal/js',
+            'plugins': '../lib/durandal/js/plugins',
+            'transitions': '../lib/durandal/js/transitions'
+        }
+    };
+
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -13,17 +26,7 @@ module.exports = function( grunt ) {
                     // vendor: [],
                     template: require('grunt-template-jasmine-requirejs'),
                     templateOptions: {
-                        requireConfig: {
-                            baseUrl: 'app/',
-                            paths: {
-                                'jquery': '../lib/jquery/jquery-1.9.1',
-                                'knockout': '../lib/knockout/knockout-2.3.0.debug',
-                                'text': '../lib/require/text',
-                                'durandal': '../lib/durandal/js',
-                                'plugins': '../lib/durandal/js/plugins',
-                                'transitions': '../lib/durandal/js/transitions'
-                            }
-                        }
+                        requireConfig: requireConfig
                     }
                 }
             },
@@ -38,17 +41,7 @@ module.exports = function( grunt ) {
                     ],
                     template: require('grunt-template-jasmine-requirejs'),
                     templateOptions: {
-                        requireConfig: {
-                            baseUrl: 'app/',
-                            paths: {
-                                'jquery': '../lib/jquery/jquery-1.9.1',
-                                'knockout': '../lib/knockout/knockout-2.3.0.debug',
-                                'text': '../lib/require/text',
-                                'durandal': '../lib/durandal/js',
-                                'plugins': '../lib/durandal/js/plugins',
-                                'transitions': '../lib/durandal/js/transitions'
-                            }
-                        }
+                        requireConfig: requireConfig
                     }
                 }
             }
@@ -69,8 +62,13 @@ module.exports = function( grunt ) {
     });
 
     // Loading the plugin(s)
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-requirejs");
+    grunt.loadNpmTasks('grunt-contrib-copy');
+
 
     // Default task(s).
     grunt.registerTask('default', ['jasmine:viewmodels']);
