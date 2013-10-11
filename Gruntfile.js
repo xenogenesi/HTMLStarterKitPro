@@ -52,11 +52,25 @@ module.exports = function( grunt ) {
                     }
                 }
             }
+        },
+        watch: {
+            options: {
+                livereload: true
+            },
+            app: {
+                files: ['test/app.spec.js'],
+                tasks: ['jasmine:app']
+            },
+            viewmodels: {
+                files: ['test/specs/viewmodels/**/*.spec.js'],
+                tasks: ['jasmine:viewmodels']
+            }
         }
     });
 
     // Loading the plugin(s)
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Default task(s).
     grunt.registerTask('default', ['jasmine:viewmodels']);

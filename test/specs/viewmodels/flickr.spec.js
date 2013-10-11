@@ -5,10 +5,6 @@ describe('viewmodels/flickr', function() {
     var sut = require('viewmodels/flickr');
     var ko = require('knockout');
 
-    desribe('available methods', function(){
-
-    });
-
     it('should return a displayName', function() {
         expect(sut.displayName).toBeDefined();
     });
