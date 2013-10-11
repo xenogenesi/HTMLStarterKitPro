@@ -58,7 +58,7 @@ module.exports = function( grunt ) {
                 livereload: true
             },
             app: {
-                files: ['test/app.spec.js'],
+                files: ['test/specs/app.spec.js'],
                 tasks: ['jasmine:app']
             },
             viewmodels: {
