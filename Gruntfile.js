@@ -17,6 +17,62 @@ module.exports = function( grunt ) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        jshint: {
+            all: ['Gruntfile.js', 'app/**/*.js', 'test/specs/**/*.js']
+        },
+        // todo: grunt-requirejs doesn't take Durandal specifics into account
+        // custom almong
+        // include app/**/*.html files
+        // include lib/durandal/js/**/*
+        requirejs: {
+            compile: {
+                options: {
+                    almond: true,
+                    optimize: 'none',
+                    baseUrl: requireConfig.baseUrl,
+                    paths: requireConfig.paths,
+                    include: ['main'],
+                    exclude: ['jquery', 'knockout'],
+                    out: 'build/app/main.js',
+                    wrap: true
+                }
+            }
+        },
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n' +
+                    '* Copyright (c) <%= grunt.template.today("yyyy") %> Spirit EDV-Beratung AG \n' +
+                    '* Available via the MIT license.\n' +
+                    '* see: https://github.com/RainerAtSpirit/HTMLStarterKitPro for details.\n' +
+                    '*/\n'
+            },
+            build: {
+                src: 'build/app/main.js',
+                dest: 'build/app/main-built.js'
+            }
+        },
+        clean: {
+            build: ['build/*']
+        },
+        copy: {
+            lib: {
+                src: 'lib/**/**',
+                dest: 'build/'
+            },
+            index: {
+                src: 'index.html',
+                dest: 'build/'
+            },
+            css: {
+                src: 'css/**',
+                dest: 'build/'
+            },
+            //todo: remove once requirejs works correctly
+            app: {
+                src: 'app/**',
+                dest: 'build/'
+            }
+        },
         jasmine: {
             viewmodels: {
                 src: 'app/viewmodels/*.js',
@@ -61,15 +117,17 @@ module.exports = function( grunt ) {
         }
     });
 
-    // Loading the plugin(s)
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    // Loading plugin(s)
+
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks("grunt-contrib-watch");
-    grunt.loadNpmTasks("grunt-requirejs");
-    grunt.loadNpmTasks('grunt-contrib-copy');
-
 
     // Default task(s).
     grunt.registerTask('default', ['jasmine:viewmodels']);
+    grunt.registerTask('build', ['jshint', 'jasmine', 'clean', 'copy', 'requirejs', 'uglify']);
 };
