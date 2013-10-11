@@ -5,16 +5,18 @@ describe('viewmodels/flickr', function() {
     var sut = require('viewmodels/flickr');
     var ko = require('knockout');
 
+    desribe('available methods', function(){
+
+    });
 
     it('should return a displayName', function() {
         expect(sut.displayName).toBeDefined();
     });
 
     it('should return "images" as ko.observableArray ', function() {
-            expect(ko.isObservable(sut.images)).toBeTruthy();
-            expect(ko.unwrap(sut.images).length).toBeDefined();
-        });
-
+        expect(ko.isObservable(sut.images)).toBeTruthy();
+        expect(ko.unwrap(sut.images).length).toBeDefined();
+    });
 
     it('should have a "activate" property of type function', function() {
         expect(typeof sut.activate).toBe('function');

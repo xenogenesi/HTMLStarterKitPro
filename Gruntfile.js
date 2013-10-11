@@ -32,7 +32,10 @@ module.exports = function( grunt ) {
                 options: {
                     specs: 'test/specs/app.spec.js',
                     keepRunner: true,
-                    // vendor: [],
+                    vendor: [
+                        'lib/jquery/jquery-1.9.1.js'
+                        //'test/_libs/jasmine-jquery-1.5.2.js'
+                    ],
                     template: require('grunt-template-jasmine-requirejs'),
                     templateOptions: {
                         requireConfig: {
