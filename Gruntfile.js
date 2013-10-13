@@ -13,7 +13,6 @@ module.exports = function( grunt ) {
             'transitions': '../lib/durandal/js/transitions'
         }
     };
-
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -24,17 +23,25 @@ module.exports = function( grunt ) {
         // custom almong
         // include app/**/*.html files
         // include lib/durandal/js/**/*
-        requirejs: {
-            compile: {
+
+        durandal: {
+            almond: {
+                src: ['app/**/*.*', 'lib/durandal/**/*.js'],
                 options: {
-                    almond: true,
-                    optimize: 'none',
-                    baseUrl: requireConfig.baseUrl,
-                    paths: requireConfig.paths,
-                    include: ['main'],
-                    exclude: ['jquery', 'knockout'],
-                    out: 'build/app/main.js',
-                    wrap: true
+                    name:'../lib/require/almond-custom',
+                    baseUrl: 'app',
+                    mainPath: 'app/main',
+                    paths: {
+                        "almond": "../lib/require/almond-custom.js",
+                        "jquery": "../lib/jquery/jquery-1.9.1",
+                        "knockout": "../lib/knockout/knockout-2.3.0.debug",
+                        "text": "../lib/require/text",
+                        "durandal": "../lib/durandal/js",
+                        "plugins": "../lib/durandal/js/plugins",
+                        "transitions": "../lib/durandal/js/transitions"
+                    },
+                    optimize: "none",
+                    out: 'build/app/main.js'
                 }
             }
         },
@@ -123,11 +130,11 @@ module.exports = function( grunt ) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks("grunt-durandal");
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks("grunt-contrib-watch");
 
     // Default task(s).
     grunt.registerTask('default', ['jasmine:viewmodels']);
-    grunt.registerTask('build', ['jshint', 'jasmine', 'clean', 'copy', 'requirejs', 'uglify']);
+    grunt.registerTask('build', ['jshint', 'jasmine', 'clean', 'copy', 'durandal', 'uglify']);
 };
