@@ -69,26 +69,6 @@ module.exports = function( grunt ) {
                     optimize: "none",
                     out: 'build/app/main.js'
                 }
-            },
-            exclude: {
-                src: ['app/**/*.*', 'lib/durandal/**/*.js'],
-                options: {
-                    name: '../lib/require/almond-custom',
-                    baseUrl: 'app',
-                    mainPath: 'app/main',
-                    paths: {
-                        "almond": "../lib/require/almond-custom.js",
-                        "jquery": "../lib/jquery/jquery-1.9.1",
-                        "knockout": "../lib/knockout/knockout-2.3.0.debug",
-                        "text": "../lib/require/text",
-                        "durandal": "../lib/durandal/js",
-                        "plugins": "../lib/durandal/js/plugins",
-                        "transitions": "../lib/durandal/js/transitions"
-                    },
-                    exclude: ['jquery', 'knockout'],
-                    optimize: "none",
-                    out: 'build/app/main.js'
-                }
             }
         },
         jasmine: {
