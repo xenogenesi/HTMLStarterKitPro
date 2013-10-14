@@ -16,50 +16,19 @@ module.exports = function( grunt ) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        jshint: {
-            all: ['Gruntfile.js', 'app/**/*.js', 'test/specs/**/*.js']
-        },
-        // todo: grunt-requirejs doesn't take Durandal specifics into account
-        // custom almong
-        // include app/**/*.html files
-        // include lib/durandal/js/**/*
-
-        durandal: {
-            almond: {
-                src: ['app/**/*.*', 'lib/durandal/**/*.js'],
-                options: {
-                    name:'../lib/require/almond-custom',
-                    baseUrl: 'app',
-                    mainPath: 'app/main',
-                    paths: {
-                        "almond": "../lib/require/almond-custom.js",
-                        "jquery": "../lib/jquery/jquery-1.9.1",
-                        "knockout": "../lib/knockout/knockout-2.3.0.debug",
-                        "text": "../lib/require/text",
-                        "durandal": "../lib/durandal/js",
-                        "plugins": "../lib/durandal/js/plugins",
-                        "transitions": "../lib/durandal/js/transitions"
-                    },
-                    optimize: "none",
-                    out: 'build/app/main.js'
-                }
-            }
-        },
-        uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n' +
-                    '* Copyright (c) <%= grunt.template.today("yyyy") %> Spirit EDV-Beratung AG \n' +
-                    '* Available via the MIT license.\n' +
-                    '* see: https://github.com/RainerAtSpirit/HTMLStarterKitPro for details.\n' +
-                    '*/\n'
-            },
-            build: {
-                src: 'build/app/main.js',
-                dest: 'build/app/main-built.js'
-            }
-        },
         clean: {
             build: ['build/*']
+        },
+
+        connect: {
+            build: {
+                options: {
+                    port: 9001,
+                    base: 'build',
+                    open: true,
+                    keepalive: true
+                }
+            }
         },
         copy: {
             lib: {
@@ -78,6 +47,48 @@ module.exports = function( grunt ) {
             app: {
                 src: 'app/**',
                 dest: 'build/'
+            }
+        },
+        durandal: {
+            allInOne: {
+                src: ['app/**/*.*', 'lib/durandal/**/*.js'],
+                options: {
+                    name: '../lib/require/almond-custom',
+                    baseUrl: 'app',
+                    mainPath: 'app/main',
+                    paths: {
+                        "almond": "../lib/require/almond-custom.js",
+                        "jquery": "../lib/jquery/jquery-1.9.1",
+                        "knockout": "../lib/knockout/knockout-2.3.0.debug",
+                        "text": "../lib/require/text",
+                        "durandal": "../lib/durandal/js",
+                        "plugins": "../lib/durandal/js/plugins",
+                        "transitions": "../lib/durandal/js/transitions"
+                    },
+                    exclude: [],
+                    optimize: "none",
+                    out: 'build/app/main.js'
+                }
+            },
+            exclude: {
+                src: ['app/**/*.*', 'lib/durandal/**/*.js'],
+                options: {
+                    name: '../lib/require/almond-custom',
+                    baseUrl: 'app',
+                    mainPath: 'app/main',
+                    paths: {
+                        "almond": "../lib/require/almond-custom.js",
+                        "jquery": "../lib/jquery/jquery-1.9.1",
+                        "knockout": "../lib/knockout/knockout-2.3.0.debug",
+                        "text": "../lib/require/text",
+                        "durandal": "../lib/durandal/js",
+                        "plugins": "../lib/durandal/js/plugins",
+                        "transitions": "../lib/durandal/js/transitions"
+                    },
+                    exclude: ['jquery', 'knockout'],
+                    optimize: "none",
+                    out: 'build/app/main.js'
+                }
             }
         },
         jasmine: {
@@ -109,6 +120,22 @@ module.exports = function( grunt ) {
                 }
             }
         },
+        jshint: {
+            all: ['Gruntfile.js', 'app/**/*.js', 'test/specs/**/*.js']
+        },
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n' +
+                    '* Copyright (c) <%= grunt.template.today("yyyy") %> Spirit EDV-Beratung AG \n' +
+                    '* Available via the MIT license.\n' +
+                    '* see: https://github.com/RainerAtSpirit/HTMLStarterKitPro for details.\n' +
+                    '*/\n'
+            },
+            build: {
+                src: 'build/app/main.js',
+                dest: 'build/app/main-built.js'
+            }
+        },
         watch: {
             options: {
                 livereload: true
@@ -125,8 +152,8 @@ module.exports = function( grunt ) {
     });
 
     // Loading plugin(s)
-
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks("grunt-contrib-connect");
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks("grunt-contrib-jshint");
@@ -136,5 +163,5 @@ module.exports = function( grunt ) {
 
     // Default task(s).
     grunt.registerTask('default', ['jasmine:viewmodels']);
-    grunt.registerTask('build', ['jshint', 'jasmine', 'clean', 'copy', 'durandal', 'uglify']);
+    grunt.registerTask('build', ['jshint', 'jasmine', 'clean', 'copy', 'durandal:allInOne', 'uglify', 'connect:build']);
 };

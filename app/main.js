@@ -16,6 +16,10 @@
     }
 });
 
+
+define('jquery', function () { return jQuery; });
+define('knockout', ko);
+
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator'],  function (system, app, viewLocator) {
     //>>excludeStart("build", true);
     system.debug(true);
