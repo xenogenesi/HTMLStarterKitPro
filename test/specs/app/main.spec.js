@@ -1,11 +1,11 @@
 /*global jasmine, describe, beforeEach, it, expect, require, waitsFor, runs, define, $, spyOn */
 
 // Adding required 'applicationHost' container to body
-document.body.innerHTML += '<div id="applicationHost"></div>';
+document.body.innerHTML += '<div id="applicationHost" style="display: none"></div>';
 
 // By defining main as dependency we can test modules that are main dependencies
-// Important: router, dialog, widget CAN'T be tested, because they are loaded be 'configurePlugins
-// We want to test router.events to we include router as dependency
+// Important: router, dialog, widget CAN'T be tested by default, because they are loaded be 'configurePlugins'
+// In order to test them they need to be included into the dependency array
 
 define(['plugins/router', 'main'], function( router ) {
     "use strict";
