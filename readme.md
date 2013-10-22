@@ -1,6 +1,6 @@
 #Durandal HTML Starter Kit Pro
 [![Build Status](https://travis-ci.org/RainerAtSpirit/HTMLStarterKitPro.png?branch=master)](https://travis-ci.org/RainerAtSpirit/HTMLStarterKitPro)
-### last updated 2013/10/21
+>  **2013/10/21**: Using Durandal 2.0.0
 
 Using grunt with [Durandal's](http://www.durandaljs.com) HTML starter kit.
 
@@ -10,7 +10,7 @@ Using grunt with [Durandal's](http://www.durandaljs.com) HTML starter kit.
 2. install grunt using `npm install -g grunt-cli`
 3. download/clone this repo
 4. run `npm install` in repo's root directory to install grunt's dependencies
-5. run `grunt`, which will run the default task, which runs `jshint`, `jasmine:modules` and opens the resultant
+5. run `grunt` to run the default task, which runs `jshint`, `jasmine:modules` and opens the resultant
  `_specrunner.html` in the browser
 
 ###Writing tests
