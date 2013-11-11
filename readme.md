@@ -10,8 +10,8 @@
 2. install grunt using `npm install -g grunt-cli`
 3. download/clone this repo
 4. run `npm install` in repo's root directory to install grunt's dependencies
-5. run `grunt` to run the default task, which runs `jshint`, `jasmine:modules` and opens the resultant
- `_specrunner.html` in the browser
+5. run `grunt` to run the default task, which opens the resultant `_specrunner.html` in the browser... and waits for
+you to write some tests
 
 ###Writing tests
 Testing Durandal apps typically start at the module level and of course there's a grunt task for it.
