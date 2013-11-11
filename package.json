@@ -4,7 +4,7 @@
   "description": "grunt tasks for Durandal's HTML Starter Kit to ease testing/building",
   "main": "app/main.js",
   "scripts": {
-    "test": "grunt jasmine"
+    "test": "grunt jasmine:dev"
   },
   "keywords": [
     "Durandal",
