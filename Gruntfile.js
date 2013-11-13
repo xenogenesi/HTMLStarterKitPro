@@ -124,7 +124,7 @@ module.exports = function( grunt ) {
 
             watch: {
                 build: {
-                    files: ['test/specs/build/**/*spec.js'],
+                    files: ['build/**/*.js'],
                     tasks: ['jasmine:build']
                 },
                 dev: {
@@ -136,8 +136,7 @@ module.exports = function( grunt ) {
                 }
             }
         }
-    )
-    ;
+    );
 
 // Loading plugin(s)
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -151,6 +150,6 @@ module.exports = function( grunt ) {
     grunt.loadNpmTasks('grunt-durandal');
 
     grunt.registerTask('default', ['jshint', 'jasmine:dev', 'connect:dev:livereload', 'open:dev', 'watch:dev']);
-    grunt.registerTask('build', ['jshint', 'jasmine:dev', 'clean', 'copy', 'durandal:main', 'uglify', 'jasmine:build', 'connect:build', 'open:build']);
+    grunt.registerTask('build', ['jshint', 'jasmine:dev', 'clean', 'copy', 'durandal:main', 'uglify', 'jasmine:build', 'connect:build', 'open:build', 'watch:build']);
 
 };
