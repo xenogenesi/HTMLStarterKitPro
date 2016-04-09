@@ -73,10 +73,10 @@ module.exports = function( grunt ) {
                 main: {
                     src: ['app/**/*.*', 'lib/durandal/**/*.js'],
                     options: {
-                        name: '../lib/require/almond-custom',
+                        name: 'requireLib',
                         baseUrl: requireConfig.baseUrl,
                         mainPath: 'app/main',
-                        paths: mixIn({}, requireConfig.paths, { 'almond': '../lib/require/almond-custom.js' }),
+                        paths: mixIn({}, requireConfig.paths, { 'requireLib': '../lib/require/require' }),
                         exclude: [],
                         optimize: 'none',
                         out: 'build/app/main.js'
