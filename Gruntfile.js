@@ -59,6 +59,12 @@ module.exports = function( grunt ) {
                 css: {
                     src: 'css/**',
                     dest: 'build/'
+                },
+                views: {
+                    //expand: true,
+                    //cwd: 'app/',
+                    src: 'app/views/*.html',
+                    dest: 'build/'
                 }
             },
             open: {
@@ -78,6 +84,7 @@ module.exports = function( grunt ) {
                         mainPath: 'app/main',
                         paths: mixIn({}, requireConfig.paths, { 'requireLib': '../lib/require/require' }),
                         exclude: [],
+                        inlineText: false,
                         optimize: 'none',
                         out: 'build/app/main.js'
                     }

@@ -1,4 +1,5 @@
 ﻿requirejs.config({
+    baseUrl: 'app/',
     paths: {
         'text': '../lib/require/text',
         'durandal':'../lib/durandal/js',
