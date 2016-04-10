@@ -14,7 +14,7 @@ module.exports = function( grunt ) {
     var requireConfig = {
         baseUrl: 'app/',
         paths: {
-            'jquery': '../lib/jquery/jquery-1.9.1',
+            'jquery': '../lib/jquery/jquery-1.12.3',
             'knockout': '../lib/knockout/knockout-3.4.0.debug',
             'text': '../lib/require/text',
             'durandal': '../lib/durandal/js',
