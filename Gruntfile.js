@@ -15,12 +15,18 @@ module.exports = function( grunt ) {
         baseUrl: 'app/',
         paths: {
             'jquery': '../lib/jquery/jquery-1.12.3',
-            'knockout': '../lib/knockout/knockout-3.4.0.debug',
+            'knockout': '../lib/knockout/knockout-3.4.0',
             'text': '../lib/require/text',
             'durandal': '../lib/durandal/js',
             'plugins': '../lib/durandal/js/plugins',
             'transitions': '../lib/durandal/js/transitions',
             'bootstrap': '../lib/bootstrap/js/bootstrap',
+            'mymodules': 'empty:',
+            'mymodule1': 'empty:',
+            'mymodule2': 'empty:'
+        },
+        bundles: {
+            'mymodules': ['mymodule1', 'mymodule2']
         }
     };
 
@@ -53,7 +59,7 @@ module.exports = function( grunt ) {
                     dest: 'build/'
                 },
                 index: {
-                    src: 'index.html',
+                    src: ['index.html', 'index2.html'],
                     dest: 'build/'
                 },
                 css: {
@@ -159,5 +165,6 @@ module.exports = function( grunt ) {
 
     grunt.registerTask('default', ['jshint', 'jasmine:dev', 'connect:dev:livereload', 'open:dev', 'watch:dev']);
     grunt.registerTask('build', ['jshint', 'jasmine:dev', 'clean', 'copy', 'durandal:main', 'uglify', 'jasmine:build', 'connect:build', 'open:build', 'watch:build']);
+    grunt.registerTask('build-only', ['jshint', 'clean', 'copy', 'durandal:main', 'uglify']);
 
 };

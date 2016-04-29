@@ -7,7 +7,11 @@
         'transitions' : '../lib/durandal/js/transitions',
         'knockout': '../lib/knockout/knockout-3.4.0',
         'bootstrap': '../lib/bootstrap/js/bootstrap',
-        'jquery': '../lib/jquery/jquery-1.12.3'
+        'jquery': '../lib/jquery/jquery-1.12.3',
+        'mymodules': '../lib/test-bundle/test-bundle'
+    },
+    bundles: {
+        'mymodules': ['mymodule1', 'mymodule2']
     },
     shim: {
         'bootstrap': {
@@ -18,9 +22,9 @@
 });
 
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'bootstrap'],  function (system, app, viewLocator) {
-    //>>excludeStart("build", true);
+    // > > excludeStart("build", true);
     system.debug(true);
-    //>>excludeEnd("build");
+    // > > excludeEnd("build");
 
     app.title = 'Durandal Starter Kit';
 

@@ -1,4 +1,5 @@
-﻿define(['plugins/router', 'durandal/app'], function (router, app) {
+﻿define(['plugins/router', 'durandal/app', 'mymodule1', 'mymodule2'], function (router, app, mymodule1, mymodule2) {
+    console.log('modules test:', mymodule1.test, mymodule2.test);
     return {
         router: router,
         search: function() {
